@@ -2,8 +2,10 @@ var map;
 
 function ViewModel(){
 
+    this.markers = []
+    this.searchOption = ko.observable("");
 
-    function fillInfoWindow(marker, infowindow){
+    function fillInfoWindow (marker, infowindow){
         if(infowindow.marker != marker){
             infowindow.marker = marker;
             infowindow.setContent('<div>'+ marker.title +'</div>');
@@ -35,7 +37,7 @@ function ViewModel(){
                 title: locations[i].name
             });
 
-            markers.push(marker);
+            this.markers.push(marker);
             bounds.extend(marker.position);
             marker.addListener('click', function(){
                 fillInfoWindow(this, infowindow);
@@ -46,8 +48,26 @@ function ViewModel(){
 
     this.initMap();
 
+    this.locations = ko.observableArray(locations);
+
+    this.myLocationsFilter = ko.computed(function() {
+        var result = [];
+        for (var i = 0; i < this.markers.length; i++) {
+            var markerLocation = this.markers[i];
+            if (markerLocation.title.toLowerCase().includes(this.searchOption()
+                    .toLowerCase())) {
+                result.push(markerLocation);
+                this.markers[i].setVisible(true);
+            } else {
+                this.markers[i].setVisible(false);
+            }
+        }
+        return result;
+    }, this);
+
 
 }
 function kickStart(){
     ko.applyBindings(new ViewModel());
 }
+

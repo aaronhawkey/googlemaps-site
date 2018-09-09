@@ -24,13 +24,5 @@ var locations = [
             lng: -94.58279999999999
         },
         info: "Where I live."
-    },
-    {
-        name: "Insomnia Cookies",
-        latlng:{
-            lat: 39.0974121,
-            lng: -94.58279999999999
-        },
-        info: "Where I eat."
-    },
+    }
 ];
