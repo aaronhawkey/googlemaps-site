@@ -1,0 +1,7 @@
+var secrets = {
+    foursquare:{
+        client_ID: "VSIA4RZDPR4K2EGBRAFEWQBQVTXMY5KR1JNPNIVZPKMNIKP5",
+        client_secret: "YBLRSXCNZEMZKURPYJYPHAQX3Z2BT1AKYV1Z2BOT54USX5LS"
+    }
+
+}
